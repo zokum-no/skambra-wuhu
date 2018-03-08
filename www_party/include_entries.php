@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("ADMIN_DIR")) exit();
 
 global $settings;
@@ -97,7 +97,7 @@ if ($_GET["id"]) {
 <div class='formrow'>
   <label>Uploaded files</label>
 <table id='uploadedfiles'>
-<?
+<?php
   $a = glob($filedir . "*");
   foreach ($a as $v) 
   {
@@ -114,7 +114,7 @@ if ($_GET["id"]) {
   }
   ?></td>
 </tr>
-<?
+<?php
   }
 ?>
 </table>
@@ -124,7 +124,7 @@ if ($_GET["id"]) {
     <small>(max. <?=ini_get("upload_max_filesize")?> - if you want to upload
   a bigger file, just upload a dummy text file here and ask the organizers!)</small></label>
   <input name="entryfile" type="file" />
-<?if (count($a)>1) {?>
+<?php if (count($a)>1) {?>
   <small id='multifilewarning'>(Hint: having only <u>ONE</u> file decreases the chances of having the wrong version played!)</small>
 <?}?>
 </div>
@@ -134,7 +134,7 @@ if ($_GET["id"]) {
 </div>
 </div>
 </form>
-<?
+<?php
 } else {
   $entries = SQLLib::selectRows(sprintf_esc("select * from compoentries where userid=%d",get_user_id()));
   echo "<div class='entrylist' id='editmyentries'>\n";
