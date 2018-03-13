@@ -1,4 +1,4 @@
-<?
+<?php
 $a = array();
 if ($_GET["allSlides"])
 {
