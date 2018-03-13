@@ -71,27 +71,27 @@ if ($_GET["id"]) {
   }
 
 ?>
-<form action="<?=build_url($page,array("id"=>(int)$_GET["id"])) ?>" method="post" enctype="multipart/form-data">
+<form action="<?php print(build_url($page,array("id"=>(int)$_GET["id"]))); ?>" method="post" enctype="multipart/form-data">
 <div id="entryform">
 <div class='formrow'>
   <label for="title">Product title:</label>
-  <input id="title" name="title" type="text" value="<?=_html($entry->title)?>" required='yes'/>
+  <input id="title" name="title" type="text" value="<?php print(_html($entry->title)); ?>" required='yes'/>
 </div>
 <div class='formrow'>
   <label for="author">Author:</label>
-  <input id="author" name="author" type="text" value="<?=_html($entry->author)?>"/>
+  <input id="author" name="author" type="text" value="<?php print(_html($entry->author)); ?>"/>
 </div>
 <div class='formrow'>
   <label for="comment">Comment: (this will be shown on the compo slide)</label>
-  <textarea id="comment" name="comment"><?=_html($entry->comment)?></textarea>
+  <textarea id="comment" name="comment"><?php print(_html($entry->comment)); ?></textarea>
 </div>
 <div class='formrow'>
   <label id="orgacomment">Comment for the organizers: (this will NOT be shown anywhere)</label>
-  <textarea name="orgacomment"><?=_html($entry->orgacomment)?></textarea>
+  <textarea name="orgacomment"><?php print (_html($entry->orgacomment)); ?></textarea>
 </div>
 <div class='formrow'>
   <label>Screenshot: (JPG, GIF or PNG!)</label>
-  <img id='screenshot' src='screenshot.php?id=<?=(int)$_GET["id"]?>&amp;show=thumb' alt='thumb'/>
+  <img id='screenshot' src='screenshot.php?id=<?php print((int)$_GET["id"]); ?>&amp;show=thumb' alt='thumb'/>
   <input name="screenshot" type="file" accept="image/*" />
 </div>
 <div class='formrow'>
@@ -103,9 +103,9 @@ if ($_GET["id"]) {
   {
     $v = basename($v);
 ?>
-<tr class='<?=($v == $entry->filename?"fileselected":"fileunselected")?>'>
-  <td><?=$v?></td>
-  <td><?
+<tr class='<?php print(($v == $entry->filename?"fileselected":"fileunselected")); ?>'>
+  <td><?php print($v);?></td>
+  <td><?php
   if ($v == $entry->filename) {
     echo "<i>Currently selected file</i>";
   } else {
@@ -121,15 +121,15 @@ if ($_GET["id"]) {
 </div>
 <div class='formrow'>
   <label>Upload new file:
-    <small>(max. <?=ini_get("upload_max_filesize")?> - if you want to upload
+    <small>(max. <?php print(ini_get("upload_max_filesize"));?> - if you want to upload
   a bigger file, just upload a dummy text file here and ask the organizers!)</small></label>
   <input name="entryfile" type="file" />
 <?php if (count($a)>1) {?>
   <small id='multifilewarning'>(Hint: having only <u>ONE</u> file decreases the chances of having the wrong version played!)</small>
-<?}?>
+<?php }?>
 </div>
 <div class='formrow'>
-  <input name="entryid" type='hidden' value="<?=(int)$_GET["id"]?>" />
+  <input name="entryid" type='hidden' value="<?php print((int)$_GET["id"]);?>" />
   <input type="submit" value="Go!" />
 </div>
 </div>

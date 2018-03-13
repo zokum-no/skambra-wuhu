@@ -1,16 +1,19 @@
-<?
-if (!defined("ADMIN_DIR")) exit();
+<?php
 
-if ($_POST["nickname"]) {
+if (!defined("ADMIN_DIR")) {
+	exit();
+}
+
+if (isset($_POST["nickname"])) {
   global $userdata;
   $userdata = array(
     "group"=> ($_POST["group"]),
   );
-  if ($_POST["nickname"])
+  if (isset($_POST["nickname"]))
     $userdata["nickname"] = $_POST["nickname"];
   run_hook("profile_processdata",array("data"=>&$userdata));
-  if ($_POST["password"]) {
-    if ($_POST["password"]!=$_POST["password2"]) {
+  if (isset($_POST["password"])) {
+    if ($_POST["password"] != $_POST["password2"]) {
       echo "<div class='error'>Passwords don't match!</div>";
     } else {
       $userdata["password"] = hashPassword($_POST["password"]);
@@ -19,37 +22,51 @@ if ($_POST["nickname"]) {
   SQLLib::UpdateRow("users",$userdata,sprintf_esc("id='%d'",get_user_id()));    
   echo "<div class='success'>Profile editing successful!</div>";
 }
+
 global $user;
 $user = SQLLib::selectRow(sprintf_esc("select * from users where id='%d'",get_user_id()));
 global $page;
+
+
+
+
 ?>
-<form action="<?=build_url("ProfileEdit")?>" method="post" id='profileForm'>
+<form action="<?php print (build_url("ProfileEdit")); ?>" method="post" id='profileForm'>
 <div id="profile">
 <div>
-  <label>Username:</label>
-  <b><?=_html($user->username)?></b>
+  <label><?php print_localized("profile_edit_username"); ?></label>
+  <b><?php print (_html($user->username)); ?></b>
 </div>
 <div>
-  <label for="password">New password: (only if you want to change it)</label>
+  <?php // <label for="password">New password: (only if you want to change it)</label>
+	print ( "<label for=\"password\">" . get_localized("profile_edit_change_password", "nn-NO") . "</label>");
+	
+?>
   <input name="password" type="password" id="password" />
 </div>
 <div>
-  <label for="password2">New password again:</label>
+  <label for="password2"> <?php print_localized("profile_edit_change_password_confirm"); /*New password again:*/ ?> </label>
   <input name="password2" type="password" id="password2" />
 </div>
 <div>
-  <label for="nickname">Nick/Handle:</label>
-  <input name="nickname" type="text" id="nickname" value="<?=_html($user->nickname)?>" required='yes'/>
+  <label for="nickname"><?php print_localized("profile_edit_nick_handle"); ?></label>
+  <input name="nickname" type="text" id="nickname" value="<?php print(_html($user->nickname)); ?>" required='yes'/>
 </div>
 <div>
-  <label for="group">Group: (if any)</label>
-  <input name="group" type="text" id="group" value="<?=_html($user->group)?>"/>
+  <label for="group"><?php print_localized("profile_edit_group"); ?> </label>
+  <input name="group" type="text" id="group" value="<?php print(_html($user->group)); ?>"/>
 </div>
-<?
-run_hook("profile_endform");
+<?php
+
+
+  run_hook("profile_endform");
 ?>
 <div id='regsubmit'>
   <input type="submit" value="Go!" />
 </div>
 </div>
 </form>
+
+<?
+
+?>

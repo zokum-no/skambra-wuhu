@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("ADMIN_DIR")) exit();
 
 run_hook("register_start");
@@ -84,10 +84,10 @@ if ($_POST["username"]) {
 if(!$success)
 {
 ?>
-<form action="<?=build_url("Login")?>" method="post" id='registerForm'>
+<form action="<?php print(build_url("Login")); ?>" method="post" id='registerForm'>
 <div>
   <label for="username">Username:</label>
-  <input id="username" name="username" type="text" value="<?=_html($_POST["username"])?>" required='yes'/>
+  <input id="username" name="username" type="text" value="<?php print(_html($_POST["username"])); ?>" required='yes'/>
 </div>
 <div>
   <label for="password">Password:</label>
@@ -99,24 +99,24 @@ if(!$success)
 </div>
 <div>
   <label for="votekey">Votekey: <small>(Get one at the infodesk to be able to register!)</small></label>
-  <input id="votekey" name="votekey" type="text" value="<?=_html($_POST["votekey"])?>" required='yes'/>
+  <input id="votekey" name="votekey" type="text" value="<?php print(_html($_POST["votekey"])); ?>" required='yes'/>
 </div>
 <div>
   <label for="nickname">Nick/Handle:</label>
-  <input id="nickname" name="nickname" type="text" value="<?=_html($_POST["nickname"])?>" required='yes'/>
+  <input id="nickname" name="nickname" type="text" value="<?php print(_html($_POST["nickname"])); ?>" required='yes'/>
 </div>
 <div>
   <label for="group">Group: (if any)</label>
-  <input id="group" name="group" type="text" value="<?=_html($_POST["group"])?>"/>
+  <input id="group" name="group" type="text" value="<?php print(_html($_POST["group"])); ?>"/>
 </div>
-<?
+<?php
 run_hook("register_endform");
 ?>
 <div id='regsubmit'>
   <input type="submit" value="Go!" />
 </div>
 </form>
-<?
+<?php
 }
 
 run_hook("register_end");

@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("ADMIN_DIR")) exit();
 
 if (is_user_logged_in())
@@ -7,7 +7,7 @@ if (is_user_logged_in())
   exit();
 }
 
-run_hook("login_start");
+run_hook("login_start", null);
 
 if ($_POST["login"]) 
 {
@@ -31,7 +31,7 @@ if ($_POST["login"])
 if ($_GET["login"]=="failure")
   echo "<div class='error'>Login failed!</div>";
 ?>
-<form action="<?=build_url("Login")?>" method="post" id='loginForm'>
+<form action="<?php print(build_url("Login")); ?>" method="post" id='loginForm'>
 <div>
   <label for="loginusername">Username:</label>
   <input id="loginusername" name="login" type="text" required='yes' />
@@ -44,6 +44,6 @@ if ($_GET["login"]=="failure")
   <input type="submit" value="Go!" />
 </div>
 </form>
-<?
-run_hook("login_end");
+<?php
+run_hook("login_end", null);
 ?>

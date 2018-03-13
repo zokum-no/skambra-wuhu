@@ -4,6 +4,11 @@ if (!file_exists("database.inc.php")) {
   die("The system is not yet configured - please go to the admin panel to do so.");
 }
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 /////////////////////////////////////////////////
 // bootstrap
 
@@ -12,6 +17,9 @@ include_once(ADMIN_DIR . "/bootstrap.inc.php");
 include_once("minuswiki.inc.php");
 
 loadPlugins();
+
+// Load multi language modification
+include ("./multilanguage.inc.php");
 
 run_hook("index_start");
 
@@ -23,8 +31,11 @@ $year = "intranet";
 $wiki = new MinusWiki();
 $wiki->TableName = "intranet_minuswiki_pages";
 
-$page = "News";
-if($_GET["page"]) $page = $_GET["page"];
+if( isset($_GET["page"]))  {
+	$page = $_GET["page"];
+} else {
+	$page = "News";
+}
 
 if (strstr($page,":")!==false)
   list($lang,$pagetitle) = explode(":",$page);
@@ -43,8 +54,9 @@ if (!$content)
   $row = SQLLib::selectRow(sprintf_esc("select type from intranet_toc where link='%s'",$pagetitle));
   if ($row->type=='loggedin' && (!$_SESSION["logindata"] || !$_SESSION["logindata"]->id)) {
     $content = "UNAUTHORIZED REQUEST!";
-  } else
+  } else {
     $content = $wiki->GetPage( $page );
+  }
 }
 
 /////////////////////////////////////////////////

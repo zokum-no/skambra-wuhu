@@ -1,4 +1,4 @@
-<?
+<?php
 class MinusWiki
 {
   var $PageTitle;
