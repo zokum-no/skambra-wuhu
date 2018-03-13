@@ -1,4 +1,4 @@
-<?
+<?php
 error_reporting(E_ALL ^ E_NOTICE);
 if (!defined(ADMIN_DIR))
   include_once(dirname(__FILE__)."/database.inc.php");

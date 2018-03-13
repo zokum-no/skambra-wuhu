@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 if ($_POST["amount"]) {
@@ -72,6 +72,6 @@ printf("</table>");
   <input type="radio" name="mode" value="merge" id='load2' checked='checked' /> <label for='load2'>Merge with existing</label>
   <input type="submit" value="Upload!"/>
 </form>
-<?
+<?php
 include_once("footer.inc.php");
 ?>

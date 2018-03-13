@@ -1,4 +1,4 @@
-<?
+<?php
 // todo: priority levels and/or possibility to cancel future actions?
 
 $HOOKS = array();
@@ -8,11 +8,12 @@ function add_hook( $hookpoint, $func )
   $HOOKS[$hookpoint][] = $func;
 }
 
-function run_hook( $hookpoint, $args = null )
-{
+function run_hook( $hookpoint, $args = null ) {
   global $HOOKS;
 
-  if (!$HOOKS[$hookpoint]) return;
+  if (!isset($HOOKS[$hookpoint])) {
+    return;
+  }
   
   foreach($HOOKS[$hookpoint] as $v) $v($args);
 }
@@ -26,8 +27,12 @@ function add_activation_hook( $pluginPath, $func )
 }
 
 $CRONS = array();
-function add_cron( $key, $func, $frequency_in_seconds = 15 * 60 )
+function add_cron( $key, $func, $frequency_in_seconds)
 {
+  if ($frequency_in_seconds == 0) {
+	 $frequency_in_seconds = 15 * 60;
+  }
+
   global $CRONS;
   $CRONS[$key] = array(
     "func" => $func,

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("bootstrap.inc.php");
 
 if ($_GET['change']) {
@@ -83,11 +83,11 @@ if ($_GET['id'])
 <table class="minuswiki">
 <tr>
   <td>Compo name:</td>
-  <td><input id="componame" name="name" type="text" value="<?=htmlspecialchars($compo->name)?>"/></td>
+  <td><input id="componame" name="name" type="text" value="<?php=htmlspecialchars($compo->name)?>"/></td>
 </tr>
 <tr>
   <td>Compo start:</td>
-  <td><?
+  <td><?php
     list($startdate,$starttime) = explode(" ",$compo->start,2);
     printf("<select name='compostart_date'>");
     for ($x = 0; $x<10; $x++)
@@ -102,23 +102,23 @@ if ($_GET['id'])
 </tr>
 <tr>
   <td>Directory name:</td>
-  <td><input id="dirname" name="dirname" type="text" value="<?=htmlspecialchars($compo->dirname)?>"/></td>
+  <td><input id="dirname" name="dirname" type="text" value="<?php=htmlspecialchars($compo->dirname)?>"/></td>
 </tr>
-<?
+<?php
 foreach($checkboxen as $k=>$v)
 {
 ?>
 <tr>
-  <td><?=$v?></td>
-  <td><input id="<?=$k?>" name="<?=$k?>" type="checkbox"<?=$compo->$k?' checked="checked"':""?>/></td>
+  <td><?php=$v?></td>
+  <td><input id="<?php=$k?>" name="<?php=$k?>" type="checkbox"<?php=$compo->$k?' checked="checked"':""?>/></td>
 </tr>
-<?  
+<?php
 }
 run_hook("admin_compos_editform",array("compo"=>$compo));
 ?>
 <tr>
   <td colspan="2">
-    <input type="hidden" name="id" value="<?=(int)$_GET['id']?>" />
+    <input type="hidden" name="id" value="<?php=(int)$_GET['id']?>" />
     <input type="submit" name="edit" value="Go!" />
     <input type="submit" id="delcompo" name="delete" value="Delete compo" />
   </td>
@@ -140,7 +140,7 @@ document.observe("dom:loaded",function(){
 });
 //-->
 </script>
-<?  
+<?php
 } 
 else if ($_GET["new"]=="add") 
 {
@@ -157,7 +157,7 @@ else if ($_GET["new"]=="add")
 <tbody>
 <tr class='comporow'>
   <td><input id="componame[0]" name="name[0]" class="componame" type="text"/></td>
-  <td><?
+  <td><?php
     printf("<select class='compostart_day' name='compostart_date[0]'>");
     for ($x = 0; $x<10; $x++)
     {
@@ -217,7 +217,7 @@ document.observe("dom:loaded",function(){
 });
 //-->
 </script>
-<?
+<?php
 }
 else
 {
@@ -225,7 +225,7 @@ else
   ?>
   <table class='minuswiki' id='compolist'>
   <tr>
-<?
+<?php
   run_hook("admin_compolist_headerrow_start");
 ?>  
     <th>Compo</th>
@@ -237,11 +237,11 @@ else
     <th>Voting</th>
     <th>Upload</th>
     <th>Editing</th>
-<?
+<?php
   run_hook("admin_compolist_headerrow_end");
 ?>  
   </tr>
-  <?
+  <?php
   foreach($s as $t) {
     $z = SQLLib::selectRow(sprintf_esc("select count(*) as c from compoentries where compoid=%d",$t->id));
     

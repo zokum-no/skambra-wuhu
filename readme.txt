@@ -1,3 +1,21 @@
+Wuhu-Skambra
+============
+
+Wuhu-Skambra is a modified Wuhu to make it suit the Skambra Dataparty needs better.
+
+Planned modifications:
+
+Support older PHP versions.
+Support for multiple languages on the user side.
+Adding a system for rules.
+Other more generic party features.
+
+Changes:
+
+09.03.2018
+* Fixed countless shorttags to make it run on our web server.
+* Various compability fixes to make it run on PHP 5.4.x instead of PHP 5.5.x.
+
 WUHU
 http://wuhu.function.hu
 =========

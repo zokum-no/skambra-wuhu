@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("bootstrap.inc.php");
 
 loadPlugins();
@@ -90,17 +90,17 @@ run_hook("admin_compo_entrylist_start");
   <th>Uploader</th>
   <th>File name</th>
   <th>File size</th>
-<?
+<?php
   $compo = get_compo( $_GET["id"] );
   if ($compo->votingopen == 0)
     echo "<th colspan='2'>Re-order</th>\n";
 ?>
   <th>Upload time</th>
-<?
+<?php
   run_hook("admin_compo_entrylist_headerrow_end");
 ?>
 </tr>
-<?
+<?php
 $n = 1;
 global $entry;
 foreach($entries as $entry) 
@@ -138,13 +138,13 @@ echo "</table>\n";
 run_hook("admin_compo_entrylist_end");
 
 ?>
-<form action="compos_entry_list.php?id=<?=$_GET["id"]?>" method="post" enctype="multipart/form-data">
+<form action="compos_entry_list.php?id=<?php=$_GET["id"]?>" method="post" enctype="multipart/form-data">
   <h2>Export compo stuff to export directory</h2>
   <div>
     <input type="submit" name="submit" value="Export!" />
   </div>
-  <small>(Note: whether this is publicly visible or not depends on how you set your server up! The directory is <b><?=_html($settings["public_ftp_dir"])?></b>)</small>
+  <small>(Note: whether this is publicly visible or not depends on how you set your server up! The directory is <b><?php=_html($settings["public_ftp_dir"])?></b>)</small>
 </form>
-<?
+<?php
 include_once("footer.inc.php");
 ?>

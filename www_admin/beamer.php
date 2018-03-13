@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 if ($_POST["mode"]) 
 {
@@ -130,8 +130,8 @@ printf("Current mode: <a href='result.xml'>%s</a>",$m[1]);
 <div class='beamermode'>
 <h3>Announcement</h3>
 <form action="beamer.php" method="post" enctype="multipart/form-data">
-  <textarea name="announcement"><?=trim($ann[2])?></textarea><br/>
-  <input type="checkbox" name="isHTML" id="isHTML" style='display:inline-block'<?=($ann[1]=="true"?" checked='checked'":"")?>/> <label for='isHTML'>Use HTML</label>
+  <textarea name="announcement"><?php print(trim($ann[2]));?></textarea><br/>
+  <input type="checkbox" name="isHTML" id="isHTML" style='display:inline-block'<?php print(($ann[1]=="true"?" checked='checked'":""));?>/> <label for='isHTML'>Use HTML</label>
   <input type="hidden" name="mode" value="announcement"/>
   <input type="submit" value="Switch to Announcement mode."/>
 </form>
@@ -141,7 +141,7 @@ printf("Current mode: <a href='result.xml'>%s</a>",$m[1]);
 <h3>Compo countdown</h3>
 <form action="beamer.php" method="post" enctype="multipart/form-data">
 <select name="compo">
-<?
+<?php
 foreach($s as $t)
   printf("  <option value='%d'>%s</option>\n",$t->id,$t->name);
 ?>  
@@ -157,7 +157,7 @@ foreach($s as $t)
   <label for="eventname">Event name:</label>
   <input type="text" id="eventname" name="eventname" value=""/>
   <label for="eventtime">Event time:</label>
-  <input type="text" id="eventtime" name="eventtime" value="<?=date("Y-m-d H:i:s")?>"/>
+  <input type="text" id="eventtime" name="eventtime" value="<?php print(date("Y-m-d H:i:s"));?>"/>
   <input type="hidden" name="mode" value="compocountdown"/>
   <input type="submit" value="Switch to Event Countdown mode."/>
 </form>
@@ -167,7 +167,7 @@ foreach($s as $t)
 <h3>Compo display</h3>
 <form action="beamer.php" method="post" enctype="multipart/form-data">
 <select name="compo">
-<?
+<?php
 foreach($s as $t)
   printf("  <option value='%d'>%s</option>\n",$t->id,$t->name);
 ?>  
@@ -181,7 +181,7 @@ foreach($s as $t)
 <h3>Prizegiving</h3>
 <form action="beamer.php" method="post" enctype="multipart/form-data">
 <select name="compo">
-<?
+<?php
 foreach($s as $t)
   printf("  <option value='%d'>%s</option>\n",$t->id,$t->name);
 ?>  
@@ -190,6 +190,6 @@ foreach($s as $t)
   <input type="submit" value="Switch to Prizegiving mode."/>
 </form>
 </div>
-<?
+<?php
 include_once("footer.inc.php");
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 function thumbnail_shrink($srcfile, $dstfile, $limitx=128,$limity=128) 
 {
   list($x,$y,$type,$attr) = GetImageSize($srcfile);

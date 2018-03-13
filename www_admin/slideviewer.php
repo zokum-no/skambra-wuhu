@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 if ($_GET["saveDimensions"])
@@ -9,8 +9,8 @@ if ($_GET["saveDimensions"])
 ?>
 <form action="/slideviewer/" method="get" id="frm">
   <label>Native slide size:</label>
-  <input type='number' name='width' value='<?=(get_setting("slideviewer_x") ?: "1920")?>' style='width: 70px'/> x
-  <input type='number' name='height' value='<?=(get_setting("slideviewer_y") ?: "1080")?>' style='width: 70px'/>
+  <input type='number' name='width' value='<?php=(get_setting("slideviewer_x") ?: "1920")?>' style='width: 70px'/> x
+  <input type='number' name='height' value='<?php=(get_setting("slideviewer_y") ?: "1080")?>' style='width: 70px'/>
 <!--  
   <label>Fullscreen:</label>
   <input type='checkbox' name='fullscreen' checked='checked'/>
@@ -57,7 +57,7 @@ document.observe("dom:loaded",function(){
 });
 //-->
 </script>
-<?
+<?php
 
 include_once("footer.inc.php");
 

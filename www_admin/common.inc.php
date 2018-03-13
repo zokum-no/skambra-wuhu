@@ -1,4 +1,4 @@
-<?
+<?php
 class OpLock
 {
   function __construct() 

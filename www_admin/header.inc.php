@@ -1,4 +1,4 @@
-<?
+<?php
 define("ADMIN_PAGE",true);
 include_once("bootstrap.inc.php");
 
@@ -8,12 +8,12 @@ run_hook("admin_page_start");
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-  <title>wuhu - <?=basename($_SERVER["PHP_SELF"])?></title>
+  <title>wuhu - <?php print(basename($_SERVER["PHP_SELF"]));?></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link rel="stylesheet" type="text/css" href="style.css"/> 
   <script type="text/javascript" src="prototype.js"></script>
   <meta name="viewport" content="width=device-width; initial-scale=1.0;" />
-<?
+<?php
 run_hook("admin_head");
 ?>
 </head>
@@ -46,7 +46,7 @@ run_hook("admin_head");
       <li><a href="results.php">Results</a> </li>
       <li><hr/></li>
       <li>Plugins (<a href='plugins.php'>edit</a>):</li>
-<?
+<?php
 $pluginlinks = array();
 run_hook("admin_menu",array("links"=>&$pluginlinks));
 if ($pluginlinks)
@@ -65,6 +65,6 @@ else
 
   <div id="content">
   <!-- start content -->
-<?
+<?php
 run_hook("admin_content_start");
 ?>

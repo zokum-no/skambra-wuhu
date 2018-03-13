@@ -1,14 +1,16 @@
 <?php
-if (version_compare(PHP_VERSION, '5.5.0', '<')) 
+if (version_compare(PHP_VERSION, '5.4.15', '<')) 
 {
-  die("Please use a more recent version of PHP - at least 5.5!");
+  die("Please use a more recent version of PHP - at least 5.4.16!");
   exit();
 }
+/*
 if (!ini_get("short_open_tag"))
 {
   die("Please enable the 'short_open_tag' in php.ini to use Wuhu");
   exit();
 }
+*/
 define("SQLLIB_SUPPRESSCONNECT",true);
 include_once("sqllib.inc.php");
 ?>
@@ -86,7 +88,7 @@ a {
 </head>
 <body>
 
-<?
+<?php
 $_POST = clearArray($_POST);
 function perform(&$msg) {
   $msg = "";
@@ -201,7 +203,7 @@ function perform(&$msg) {
   $salt = "";
   for($x=0;$x<64;$x++) $salt.=chr(rand(0x30,0x7a));
   $db =   
-  "<"."?\n".
+  "<"."?php\n".
   "define('SQL_HOST','localhost');\n".
   "define('SQL_USERNAME',\"".addslashes($_POST["mysql_username"])."\");\n".
   "define('SQL_PASSWORD',\"".addslashes($_POST["mysql_password"])."\");\n".
@@ -246,7 +248,7 @@ function perform(&$msg) {
   return 1;
 }
 
-if ($_POST["main_www_dir"]) {
+if (isset($_POST["main_www_dir"])) {
   $b = perform($msg);
   if ($b) {
     echo "<div class='success'>".htmlspecialchars($msg)." <a href='./'>Click here to start!</a> </div>";
@@ -290,20 +292,19 @@ Hi. Welcome. Good luck.
 <tr>
   <td>What is the <b><u>absolute</u></b> path of the directory
   <b>where the partynet's user-side interface is installed to</b>?
-  <small>(This should have read/write permissions for PHP (<?=get_current_user()?>).)</small>
+  <small>(This should have read/write permissions for PHP, most likely  the user '<?php print(get_current_user());?>')</small>
   </td>
   <td>
-  <input name="main_www_dir" value="<?=htmlspecialchars($_POST["main_www_dir"]?$_POST["main_www_dir"]:"/var/www/www_party")?>"/>
+  <input name="main_www_dir" value="<?php print(htmlspecialchars(isset($_POST["main_www_dir"])?$_POST["main_www_dir"]:"/var/www/www_party"));?>"/>
   </td>
 </tr>
 
 <tr>
-  <td>What is the <b><u>absolute</u></b> path of the directory
-  on the server where you want to <b>store the compo entries</b>?
+  <td>What is the <b><u>absolute</u></b> path of the directory on the server where you want to <b>store the compo entries</b>?
   <small>(This should be an organizer-only dir, possibly FTP accessible, with read/write permissions for Apache.)</small>
   </td>
   <td>
-  <input name="private_ftp_dir" value="<?=htmlspecialchars($_POST["private_ftp_dir"]?$_POST["private_ftp_dir"]:"/var/www/entries_private")?>"/>
+  <input name="private_ftp_dir" value="<?php print(htmlspecialchars(isset($_POST["private_ftp_dir"])?$_POST["private_ftp_dir"]:"/var/www/entries_private"));?>"/>
   </td>
 </tr>
 
@@ -315,7 +316,7 @@ Hi. Welcome. Good luck.
   share the files with the visitors or to upload to scene.org. Should have read/write permissions for Apache.)</small>
   </td>
   <td>
-  <input name="public_ftp_dir" value="<?=htmlspecialchars($_POST["public_ftp_dir"]?$_POST["public_ftp_dir"]:"")?>"/>
+  <input name="public_ftp_dir" value="<?php print(isset($_POST["public_ftp_dir"])?htmlspecialchars($_POST["public_ftp_dir"]):"/var/www/to-be-uploaded");?>"/>
   </td>
 </tr>
 
@@ -326,7 +327,7 @@ Hi. Welcome. Good luck.
   but it doesn't have to be accessible for anyone else.)</small>
   </td>
   <td>
-  <input name="screenshot_dir" value="<?=htmlspecialchars($_POST["screenshot_dir"]?$_POST["screenshot_dir"]:"/var/www/screenshots")?>"/>
+  <input name="screenshot_dir" value="<?php print(isset($_POST["screenshot_dir"])?htmlspecialchars($_POST["screenshot_dir"]):"/var/www/screenshots");?>"/>
   </td>
 </tr>
 
@@ -335,8 +336,11 @@ Hi. Welcome. Good luck.
   <small>(This will be used for both width and height.)</small>
   </td>
   <td>
-  <input name="screenshot_sizex" class="resolution" value="<?=htmlspecialchars($_POST["screenshot_sizex"]?$_POST["screenshot_sizex"]:"160")?>"/> x 
-  <input name="screenshot_sizey" class="resolution" value="<?=htmlspecialchars($_POST["screenshot_sizey"]?$_POST["screenshot_sizey"]:"90")?>"/>
+<?php
+ // Swapped htmlspecialchars around...
+?>
+  <input name="screenshot_sizex" class="resolution" value="<?php print( isset($_POST["screenshot_sizex"]) ? htmlspecialchars($_POST["screenshot_sizex"]) : "160");?>"/> x 
+  <input name="screenshot_sizey" class="resolution" value="<?php print( isset($_POST["screenshot_sizey"]) ? htmlspecialchars($_POST["screenshot_sizey"]) : "90");?>"/>
   </td>
 </tr>
 
@@ -351,48 +355,48 @@ Hi. Welcome. Good luck.
 <tr>
   <td>Party starting day:</td>
   <td>
-  <input name="party_firstday" value="<?=htmlspecialchars($_POST["party_firstday"]?$_POST["party_firstday"]:date("Y-m-d"))?>"/>
+  <input name="party_firstday" value="<?php print( isset($_POST["party_firstday"]) ? htmlspecialchars($_POST["party_firstday"]) : date("Y-m-d"));?>"/>
   </td>
 </tr>
 
 
 <tr>
   <td>MySQL database name for the party engine:
-<?
+<?php
 $a = glob("plugins/adminer/adminer-*.php");
 if ($a) printf("<small>Haven't set one up yet? <a href='%s' target='_blank'>Here's a web interface to help!</a></small>",$a[0]);
 ?>  
   </td>
   <td>
-  <input name="mysql_database" value="<?=htmlspecialchars($_POST["mysql_database"]?$_POST["mysql_database"]:"")?>"/>
+  <input name="mysql_database" value="<?php print(htmlspecialchars(isset($_POST["mysql_database"]) ? $_POST["mysql_database"]:""));?>"/>
   </td>
 </tr>
 
 <tr>
   <td>MySQL username for the party engine:</td>
   <td>
-  <input name="mysql_username" value="<?=htmlspecialchars($_POST["mysql_username"]?$_POST["mysql_username"]:"")?>"/>
+  <input name="mysql_username" value="<?php print(htmlspecialchars(isset($_POST["mysql_username"]) ? $_POST["mysql_username"]:""));?>"/>
   </td>
 </tr>
 
 <tr>
   <td>MySQL password for the party engine:</td>
   <td>
-  <input name="mysql_password" value="<?=htmlspecialchars($_POST["mysql_password"]?$_POST["mysql_password"]:"")?>" type="password"/>
+  <input name="mysql_password" value="<?php print(htmlspecialchars( isset($_POST["mysql_password"]) ? $_POST["mysql_password"] : ""));?>" type="password"/>
   </td>
 </tr>
 
 <tr>
   <td>Party admin interface username:</td>
   <td>
-  <input name="admin_username" value="<?=htmlspecialchars($_POST["admin_username"]?$_POST["admin_username"]:"")?>"/>
+  <input name="admin_username" value="<?php print(htmlspecialchars( isset($_POST["admin_username"]) ? $_POST["admin_username"] : ""));?>"/>
   </td>
 </tr>
 
 <tr>
   <td>Party admin interface password:</td>
   <td>
-  <input name="admin_password" value="<?=htmlspecialchars($_POST["admin_password"]?$_POST["admin_password"]:"")?>" type="password"/>
+  <input name="admin_password" value="<?php print(htmlspecialchars( isset ($_POST["admin_password"]) ? $_POST["admin_password"]  :""));?>" type="password"/>
   </td>
 </tr>
 

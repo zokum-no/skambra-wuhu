@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("bootstrap.inc.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -40,7 +40,7 @@ li {
 </style>
 </head>
 <body>
-<?
+<?php
 //printf("<h2>Votekeys</h2>");
 printf("<ul class='column'>");
 $n = 1;

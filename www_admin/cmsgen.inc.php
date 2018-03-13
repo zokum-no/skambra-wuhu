@@ -1,4 +1,4 @@
-<?
+<?php
 function cmsProcessPost($formdata) {
   $mypost = array();
   

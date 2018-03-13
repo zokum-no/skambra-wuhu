@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("bootstrap.inc.php");
 
 $data = @file_get_contents(PLUGINREGISTRY);

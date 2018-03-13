@@ -1,4 +1,4 @@
-<?
+<?php
 function load_settings()
 {
   global $settings;

@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 if ($_POST["id"] && $_POST["action"]=="Delete") {
@@ -44,7 +44,7 @@ $s = SQLLib::selectRows(sprintf_esc("select *,compoentries.id as id from compoen
   <th>File name</th>
   <th>File size</th>
 </tr>
-<?
+<?php
 $n = 1;
 foreach($s as $t) {
   printf("<tr>\n");
@@ -64,16 +64,16 @@ echo "</table>\n";
 ?>
 <hr/>
 <form action="users.php" method="post">
-  <input type="hidden" name="id" value="<?=$_GET["id"]?>"/>
+  <input type="hidden" name="id" value="<?php=$_GET["id"]?>"/>
   <input type="submit" name="action" value="Delete"/>
 </form>
 <hr/>
 <form action="users.php" method="post">
-  <input type="hidden" name="id" value="<?=$_GET["id"]?>"/>
+  <input type="hidden" name="id" value="<?php=$_GET["id"]?>"/>
   <input type="password" name="newpassword" />
   <input type="submit" name="action" value="Set new password"/>
 </form>
-<?
+<?php
   
 } else {
   printf("<h2>Users</h2>");

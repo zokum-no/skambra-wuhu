@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("bootstrap.inc.php");
 
   if ($_GET["select"]) 
@@ -99,26 +99,26 @@ include_once("bootstrap.inc.php");
     $entry = SQLLib::selectRow(sprintf_esc("select * from compoentries where id = %d",$id));
     
 ?>
-<form action="compos_entry_edit.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
+<form action="compos_entry_edit.php?id=<?php=$id?>" method="post" enctype="multipart/form-data">
 <table id="uploadform">
-<?
+<?php
 if ($id) {
 ?>
 <tr>
   <td>Compo:</td>
-  <td><?
+  <td><?php
   $s = get_compo($entry->compoid);
   printf("<a href='compos_entry_list.php?id=%d'>%s</a>",$s->id,$s->name);
   $dirname = get_compoentry_dir_path($entry);
   ?></td>
 </tr>
-<?
+<?php
 } else {
 ?>
 <tr>
   <td>Compo:</td>
   <td><select name="compo">
-<?
+<?php
 $dirname = NULL;
 $s = SQLLib::selectRows("select * from compos order by start");
 $compoID = NULL;
@@ -132,29 +132,29 @@ foreach($s as $t) {
 ?>  
   </select></td>
 </tr>
-<?
+<?php
 }
 ?>
 <tr>
   <td>Product title:</td>
-  <td><input name="title" type="text" value="<?=_html($entry->title)?>" class="inputfield"/></td>
+  <td><input name="title" type="text" value="<?php=_html($entry->title)?>" class="inputfield"/></td>
 </tr>
 <tr>
   <td>Author:</td>
-  <td><input name="author" type="text" value="<?=_html($entry->author)?>" class="inputfield"/></td>
+  <td><input name="author" type="text" value="<?php=_html($entry->author)?>" class="inputfield"/></td>
 </tr>
 <tr>
   <td>Comment: (this will be shown on the compo slide)</td>
-  <td><textarea name="comment"><?=_html($entry->comment)?></textarea></td>
+  <td><textarea name="comment"><?php=_html($entry->comment)?></textarea></td>
 </tr>
 <tr>
   <td>Comment for the organizers: (this will NOT be shown anywhere)</td>
-  <td><textarea name="orgacomment"><?=_html($entry->orgacomment)?></textarea></td>
+  <td><textarea name="orgacomment"><?php=_html($entry->orgacomment)?></textarea></td>
 </tr>
-<? if ($entry) { ?>
+<?php if ($entry) { ?>
 <tr>
   <td>Upload info:</td>
-  <td>Uploaded at <i><?=$entry->uploadtime?></i> from <i><?=$entry->uploadip?></i> by <?
+  <td>Uploaded at <i><?php=$entry->uploadtime?></i> from <i><?php=$entry->uploadip?></i> by <?php
     if ($entry->userid)
     {
       $user = SQLLib::SelectRow(sprintf_esc("select id,nickname from users where id = %d",$entry->userid));
@@ -165,12 +165,12 @@ foreach($s as $t) {
       echo "Admin superuser";      
   ?></td>
 </tr>
-<? } ?>
+<?php } ?>
 <tr>
   <td>Uploaded files:</td>
   <td>
     <ul class='filelist'>
-    <?
+    <?php
     if ($dirname) {
       $a = glob($dirname."*");
       
@@ -189,26 +189,26 @@ foreach($s as $t) {
   </td>
 </tr>
 <tr>
-  <td>Upload new file: (max. <?=ini_get("upload_max_filesize")?>)</td>
+  <td>Upload new file: (max. <?php=ini_get("upload_max_filesize")?>)</td>
   <td><input name="entryfile" type="file" class="inputfield"/></td>
 </tr>
 <tr>
   <td>Screenshot: (JPG, GIF or PNG!)</td>
   <td>
-<? if ($id) { ?>
+<?php if ($id) { ?>
   <div>
-    <img src='screenshot.php?id=<?=(int)$id?>&amp;show=thumb' alt='thumb'/>
+    <img src='screenshot.php?id=<?php=(int)$id?>&amp;show=thumb' alt='thumb'/>
   </div>
-<? } ?>
+<?php } ?>
   <input name="screenshot" type="file" class="inputfield" accept="image/*" />
   </td>
 </tr>
-<?
+<?php
 run_hook("admin_editentry_editform",array("entry"=>$entry));
 ?>
 <tr>
   <td colspan="2">
-  <input type="hidden" value="<?=$id?>" name="id"/>
+  <input type="hidden" value="<?php=$id?>" name="id"/>
   <input type="submit" name="submit" class='button-submit' value="Go!" />
   <input type="submit" name="submit" class='button-delete' value="Delete!" id="delentry"/></td>
 </tr>
@@ -227,12 +227,12 @@ document.observe("dom:loaded",function(){
 </script>
 
 
-<? if ($id) { ?>
-<form action="compos_entry_edit.php?id=<?=$id?>" method="post" enctype="multipart/form-data">
+<?php if ($id) { ?>
+<form action="compos_entry_edit.php?id=<?php=$id?>" method="post" enctype="multipart/form-data">
   <h2>Move to compo:</h2>
-  <input type="hidden" value="<?=$id?>" name="id"/>
+  <input type="hidden" value="<?php=$id?>" name="id"/>
   <select name="targetCompoID">
-<?
+<?php
 $dirname = NULL;
 $s = SQLLib::selectRows("select * from compos order by start");
 foreach($s as $t) {
@@ -245,8 +245,8 @@ foreach($s as $t) {
     <input type="submit" name="submit" value="Move!" />
   </div>
 </form>
-<? } ?>
+<?php } ?>
 
-<?
+<?php
   include_once("footer.inc.php");
 ?>

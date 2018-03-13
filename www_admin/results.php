@@ -1,4 +1,4 @@
-<?
+<?php
 include_once("header.inc.php");
 
 if($_POST["upload_to_sceneorg"] && $_POST["partyname"] && function_exists("ftp_connect"))
