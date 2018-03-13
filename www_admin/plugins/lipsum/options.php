@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("PLUGINOPTIONS")) exit();
 
 function lipsum_string( $length = 10 )
