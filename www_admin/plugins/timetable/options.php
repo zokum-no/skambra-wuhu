@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("PLUGINOPTIONS")) exit();
 
 $formdata = array(
@@ -73,7 +73,7 @@ else
     <input type="submit" name="export" value="Export!" />
   </div>
 </form>
-<?  
+<?php
 }
 
 

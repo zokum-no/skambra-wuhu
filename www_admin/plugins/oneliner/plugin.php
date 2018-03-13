@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Oneliner
 Description: Standard run-off-the-mill oneliner plugin. Note: use the {%ONELINER%} substitution token in your template!

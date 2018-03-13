@@ -1,4 +1,4 @@
-<?
+<?php
 if (!defined("ADMIN_DIR") || !defined("PLUGINOPTIONS"))
   exit();
 
@@ -40,7 +40,7 @@ foreach($rows as $r)
 printf("</table>\n");
 ?>
 <h3>Crontab</h3>
-<?
+<?php
 $log = get_cron_log("oneliner_cron");
 if ($log)
 {
@@ -54,38 +54,38 @@ else
 printf("<p><a href='%s&amp;refresh=1'>Re-generate slide manually</a></p>\n",$_SERVER["REQUEST_URI"]);
 ?>
   
-<form action="<?=$_SERVER["REQUEST_URI"]?>" method="post">
+<form action="<?php print($_SERVER["REQUEST_URI"]);?>" method="post">
   <h3>HTML rendering options</h3>
 
   <label for='oneliner_slidecount'>Number of oneliners to show on slide:</label>
-  <input type='number' id='oneliner_slidecount' name='oneliner_slidecount' value='<?=get_setting("oneliner_slidecount")?>'/>
+  <input type='number' id='oneliner_slidecount' name='oneliner_slidecount' value='<?php=get_setting("oneliner_slidecount")?>'/>
 
 <!--
   <h3>PNG rendering options</h3>
 
   <label for='oneliner_nickcolor'>Nickname color:</label>
-  <input type='text' id='oneliner_nickcolor' name='oneliner_nickcolor' value='<?=get_setting("oneliner_nickcolor")?>'/>
+  <input type='text' id='oneliner_nickcolor' name='oneliner_nickcolor' value='<?php=get_setting("oneliner_nickcolor")?>'/>
 
   <label for='oneliner_textcolor'>Message color:</label>
-  <input type='text' id='oneliner_textcolor' name='oneliner_textcolor' value='<?=get_setting("oneliner_textcolor")?>'/>
+  <input type='text' id='oneliner_textcolor' name='oneliner_textcolor' value='<?php=get_setting("oneliner_textcolor")?>'/>
   
   <label for='oneliner_fontsize'>Font size:</label>
-  <input type='number' id='oneliner_fontsize' name='oneliner_fontsize' value='<?=(int)get_setting("oneliner_fontsize")?>'/>
+  <input type='number' id='oneliner_fontsize' name='oneliner_fontsize' value='<?php=(int)get_setting("oneliner_fontsize")?>'/>
   
   <label for='oneliner_by1'>Top border: (in pixels)</label>
-  <input type='number' id='oneliner_by1' name='oneliner_by1' value='<?=(int)get_setting("oneliner_by1")?>'/>
+  <input type='number' id='oneliner_by1' name='oneliner_by1' value='<?php=(int)get_setting("oneliner_by1")?>'/>
   
   <label for='oneliner_by2'>Bottom border: (in pixels)</label>
-  <input type='number' id='oneliner_by2' name='oneliner_by2' value='<?=(int)get_setting("oneliner_by2")?>'/>
+  <input type='number' id='oneliner_by2' name='oneliner_by2' value='<?php=(int)get_setting("oneliner_by2")?>'/>
 
   <label for='oneliner_wordwrap'>Word wrapping: (in characters)</label>
-  <input type='number' id='oneliner_wordwrap' name='oneliner_wordwrap' value='<?=(int)get_setting("oneliner_wordwrap")?>'/>
+  <input type='number' id='oneliner_wordwrap' name='oneliner_wordwrap' value='<?php=(int)get_setting("oneliner_wordwrap")?>'/>
   
   <label for='oneliner_xsep'>Nick width: (in pixels)</label>
-  <input type='number' id='oneliner_xsep' name='oneliner_xsep' value='<?=(int)get_setting("oneliner_xsep")?>'/>
+  <input type='number' id='oneliner_xsep' name='oneliner_xsep' value='<?php=(int)get_setting("oneliner_xsep")?>'/>
   
   <label for='oneliner_linespacing'>Line spacing:</label>
-  <input type='number' id='oneliner_linespacing' name='oneliner_linespacing' value='<?=(float)get_setting("oneliner_linespacing")?>'/>
+  <input type='number' id='oneliner_linespacing' name='oneliner_linespacing' value='<?php=(float)get_setting("oneliner_linespacing")?>'/>
 -->  
   <input type="submit"/>
 </form>

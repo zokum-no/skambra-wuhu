@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Live voting
 */
@@ -112,7 +112,7 @@ function reloadVotes()
           liEntry = new Element("li",{"data-entryid":entry.id,"data-playingorder":entry.playingorder});
           liEntry.insert( new Element("h3") );
           liEntry.insert( new Element("ul",{"class":"votes"}) );
-          for(var i = <?=(int)$voter->minVote?>; i <= <?=(int)$voter->maxVote?>; i++)
+          for(var i = <?php print((int)$voter->minVote);?>; i <= <?php print((int)$voter->maxVote);?>; i++)
           {
             var vote = new Element("li",{class:"vote","data-votevalue":i});
             vote.observe("click",function(ev){
@@ -172,7 +172,7 @@ document.observe("dom:loaded",function(){
 //-->
 </script>
 <noscript>Live voting requires JavaScript! (AMIGAAAAA!)</noscript>
-<?  
+<?php
   $content .= ob_get_clean();
 }
 add_hook("index_content","livevote_content");

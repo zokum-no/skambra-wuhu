@@ -1,4 +1,4 @@
-<?
+<?php
 include_once(ADMIN_DIR . "/bootstrap.inc.php");
 
 function oneliner_allocate_color_from_setting( $img, $setting )

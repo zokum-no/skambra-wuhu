@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Timetable
 Description: Show your party schedule through the intranet
