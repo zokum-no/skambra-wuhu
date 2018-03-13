@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Image gallery
 */

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Scenesat preliminary compo entry list
 */

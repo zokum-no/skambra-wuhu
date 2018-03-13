@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Entry status
 Description: Enables a variety of statuses for an entry (qualified, disqualified, etc.)
@@ -65,7 +65,7 @@ function entrystatus_addhead()
 .entrystatus:hover { opacity:0.5; }
 .entrystatus.selected { opacity:1.0; }
 </style>
-<?
+<?php
 }
 
 add_hook("admin_head","entrystatus_addhead");

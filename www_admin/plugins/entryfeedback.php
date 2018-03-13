@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Entry feedback
 Description: Allows the admin to respond to an entry for the user
@@ -20,9 +20,9 @@ function entryfeedback_editform( $data )
 ?>
 <tr>
   <td>Organizer comment / response / feedback</td>
-  <td><textarea id="organizerfeedback" name="organizerfeedback"><?=htmlspecialchars($data["entry"]->organizerfeedback)?></textarea></td>
+  <td><textarea id="organizerfeedback" name="organizerfeedback"><?php=htmlspecialchars($data["entry"]->organizerfeedback)?></textarea></td>
 </tr>
-<?
+<?php
 }
 add_hook("admin_editentry_editform","entryfeedback_editform");
 

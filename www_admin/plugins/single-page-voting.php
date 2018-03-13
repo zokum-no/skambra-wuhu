@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Single page voting
 Description: Separates the voting page by compos instead of one big list with all of them

@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Rename files to "title by author.ext"
 */

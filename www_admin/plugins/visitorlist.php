@@ -1,4 +1,4 @@
-<?
+<?php
 /*
 Plugin name: Visitor list
 Description: Show registered visitors in the admin
@@ -41,9 +41,9 @@ function visitorlist_addfield( )
 ?>
 <div>
   <label for="public">Do you want to appear on the visitors listing?</label>
-  <input id="public" name="public" type="checkbox"<?=($checked?' checked="checked"':'')?>/>
+  <input id="public" name="public" type="checkbox"<?php=($checked?' checked="checked"':'')?>/>
 </div>
-<?
+<?php
 }
 add_hook("profile_endform","visitorlist_addfield");
 add_hook("register_endform","visitorlist_addfield");
